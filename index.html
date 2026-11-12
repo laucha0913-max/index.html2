@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hamburguesas Astro Bite: promos, combos y locales para disfrutar en el local o llevar.">
+    <title>Hamburguesas Astro Bite | Promos y Combos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Iconos de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+/* ===== Paleta de colores ===== */
+:root {
+  --bs-primary: #ff0000;
+  --bs-primary-rgb: 255, 0, 0;
+  --bs-link-color: #ff0000;
+  --bs-link-hover-color: #cc0000;
+  --cozy-coffee: #6f4e37;
+  --cozy-coffee-dark: #523826;
+  --cozy-cream: #fff8ee;
+  --cozy-accent: #e8a33d;
+}
+
+/* ===== Colores rojos de Bootstrap ===== */
+.bg-danger {
+  background-color: #ff0000 !important;
+}
+
+.text-danger {
+  color: #ff0000 !important;
+}
+
+.btn-danger {
+  --bs-btn-bg: #ff0000;
+  --bs-btn-border-color: #ff0000;
+  --bs-btn-hover-bg: #cc0000;
+  --bs-btn-hover-border-color: #cc0000;
+  --bs-btn-active-bg: #cc0000;
+  --bs-btn-active-border-color: #cc0000;
+  background-color: #ff0000 !important;
+  border-color: #ff0000 !important;
+}
+
+.btn-outline-danger {
+  --bs-btn-color: #ff0000;
+  --bs-btn-border-color: #ff0000;
+  --bs-btn-hover-bg: #ff0000;
+  --bs-btn-hover-border-color: #ff0000;
+  color: #ff0000 !important;
+  border-color: #ff0000 !important;
+}
+
+/* ===== Rojo para los componentes Bootstrap ===== */
+.bg-danger,
+.badge.bg-danger,
+.container.bg-danger {
+  background-color: #ff0000 !important;
+}
+
+.text-danger {
+  color: #ff0000 !important;
+}
+
+.btn-danger {
+  background-color: #ff0000 !important;
+  border-color: #ff0000 !important;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+  background-color: #cc0000 !important;
+  border-color: #cc0000 !important;
+}
+
+.btn-outline-danger {
+  color: #ff0000 !important;
+  border-color: #ff0000 !important;
+}
+
+.btn-outline-danger:hover,
+.btn-outline-danger:focus {
+  color: #ffffff !important;
+  background-color: #ff0000 !important;
+  border-color: #ff0000 !important;
+}
+
+/* ===== Estructura general ===== */
+body {
+  background-color: #ffff00;
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+/* ===== Menú de navegación fijo al desplazarse ===== */
+.contenido.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+/* ===== Estilo rojo de la barra de navegación ===== */
+.contenido.sticky-top nav.navbar {
+  background-color: #ff0000 !important;
+  border: 2px solid #ff0000;
+}
+
+.contenido.sticky-top .navbar-brand,
+.contenido.sticky-top .nav-link {
+  color: #ffffff !important;
+}
+
+.contenido.sticky-top .nav-link:hover,
+.contenido.sticky-top .nav-link:focus {
+  color: #000000 !important;
+}
+
+.contenido.sticky-top .navbar-toggler {
+  border-color: #ff0000;
+}
+
+.contenido.sticky-top .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.contenido {
+  margin-bottom: 1rem;
+}
+
+/* ===== Colores "cozy" ===== */
+.text-cozy-coffee {
+  color: var(--cozy-coffee) !important;
+}
+
+.bg-cozy-cream {
+  background-color: var(--cozy-cream) !important;
+}
+
+/* ===== Botones ===== */
+.btn-cozy {
+  background-color: var(--cozy-coffee);
+  border-color: var(--cozy-coffee);
+  color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-cozy:hover,
+.btn-cozy:focus {
+  background-color: var(--cozy-coffee-dark);
+  border-color: var(--cozy-coffee-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-outline-cozy {
+  background-color: transparent;
+  border: 2px solid var(--cozy-coffee);
+  color: var(--cozy-coffee);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-outline-cozy:hover,
+.btn-outline-cozy:focus {
+  background-color: var(--cozy-coffee);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ===== Insignia y tarjeta destacada ===== */
+.badge-cozy {
+  background-color: var(--cozy-accent);
+  color: #3b2a1a;
+}
+
+.card-cozy-highlight {
+  border: 2px solid var(--cozy-accent) !important;
+  box-shadow: 0 8px 24px rgba(232, 163, 61, 0.25) !important;
+}
+
+/* ===== Tarjetas de promos ===== */
+.card img.card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* ===== Carrusel ===== */
+.carousel-item img {
+  height: 380px;
+  object-fit: cover;
+}
+
+.custom-caption {
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  display: inline-block;
+}
+
+@media (max-width: 576px) {
+  .carousel-item img {
+    height: 240px;
+  }
+}
+
+/* ===== Todos los elementos principales en rojo ===== */
+.bg-danger,
+.badge.bg-danger,
+.container.bg-danger {
+  background-color: #ff0000 !important;
+}
+
+.text-danger,
+a:not(.btn):not(.btn-whatsapp-flotante) {
+  --bs-link-color: #ff0000;
+  --bs-link-hover-color: #cc0000;
+}
+
+.btn-danger {
+  --bs-btn-bg: #ff0000;
+  --bs-btn-border-color: #ff0000;
+  --bs-btn-hover-bg: #cc0000;
+  --bs-btn-hover-border-color: #cc0000;
+  --bs-btn-active-bg: #cc0000;
+  --bs-btn-active-border-color: #cc0000;
+  background-color: #ff0000 !important;
+  border-color: #ff0000 !important;
+}
+
+.btn-outline-danger {
+  --bs-btn-color: #ff0000;
+  --bs-btn-border-color: #ff0000;
+  --bs-btn-hover-bg: #ff0000;
+  --bs-btn-hover-border-color: #ff0000;
+  color: #ff0000 !important;
+  border-color: #ff0000 !important;
+}
+
+/* ===== Botón flotante de WhatsApp ===== */
+.btn-whatsapp-flotante {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-whatsapp-flotante:hover {
+  background-color: #128C7E;
+  color: #FFFFFF;
+  transform: scale(1.1);
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <!-- NAVEGACIÓN -->
+        <header class="contenido sticky-top">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-danger rounded px-3">
+                <div class="container-fluid">
+
+                    <a class="navbar-brand fw-bold" href="#inicio">Astro Bite</a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#menuResponsive" aria-controls="menuResponsive" aria-expanded="false"
+                        aria-label="Alternar navegación">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="menuResponsive">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#inicio">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#experiencias">Experiencias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#productos">Productos exclusivos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#hamburgueserias">Encontrá tu hamburguesería</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+
+        <main>
+
+            <!-- INICIO / EXPERIENCIAS (carrusel) -->
+            <section class="contenido py-3" id="inicio">
+                <div class="container bg-danger text-white p-4 shadow-sm rounded" id="experiencias">
+                    <div class="row align-items-center g-4">
+
+                        <!-- Columna 1: información -->
+                        <div class="col-12 col-md-5">
+                            <span class="badge bg-danger mb-2">Destacado</span>
+                            <h2 class="fw-bold">Hamburguesas ricas</h2>
+                            <p class="text-white-50">
+                                Tenemos muchos locales por explorar, encontranos.
+                            </p>
+                            <a href="#hamburgueserias" class="btn btn-outline-light">Saber más</a>
+                        </div>
+
+                        <!-- Columna 2: carrusel con autoplay -->
+                        <div class="col-12 col-md-7">
+
+                            <div id="carruselGaleria" class="carousel slide" data-bs-ride="carousel"
+                                data-bs-interval="3000">
+
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carruselGaleria" data-bs-slide-to="0"
+                                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carruselGaleria" data-bs-slide-to="1"
+                                        aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carruselGaleria" data-bs-slide-to="2"
+                                        aria-label="Slide 3"></button>
+                                </div>
+
+                                <div class="carousel-inner rounded overflow-hidden">
+
+                                    <div class="carousel-item active">
+                                        <img src="hambu.jpg" class="d-block w-100" alt="Hamburguesa de Astro Bite">
+                                        <div class="carousel-caption d-none d-sm-block">
+                                            <div class="custom-caption">
+                                                <h5 class="fw-bold m-0">Explorá nuestros locales</h5>
+                                                <p class="small m-0 text-white-50">Descubrí los bajos precios</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <img src="hambur.jpg" class="d-block w-100" alt="Local al aire libre">
+                                        <div class="carousel-caption d-none d-sm-block">
+                                            <div class="custom-caption">
+                                                <h5 class="fw-bold m-0">Locales al aire libre</h5>
+                                                <p class="small m-0 text-white-50">Lugares tranquilos para desconectar
+                                                    del día a día.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <img src="hamu.jpg" class="d-block w-100" alt="Nuevos sabores de hamburguesa">
+                                        <div class="carousel-caption d-none d-sm-block">
+                                            <div class="custom-caption">
+                                                <h5 class="fw-bold m-0">Nuevos sabores</h5>
+                                                <p class="small m-0 text-white-50">Probá lo último que tenemos para
+                                                    vos.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carruselGaleria"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carruselGaleria"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Siguiente</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRODUCTOS / PROMOS -->
+            <section class="py-5 my-5" id="productos">
+                <div class="container">
+                    <div class="text-center mb-5">
+                        <h2 class="fw-bold display-6 text-cozy-coffee">Promos &amp; Combos</h2>
+                        <p class="text-secondary lead">Elegí tu combinación favorita para disfrutar en el local o llevar</p>
+                    </div>
+
+                    <div class="row g-4 align-items-stretch">
+
+                        <!-- Promo 1 -->
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden bg-cozy-cream">
+                                <img src="doble.jpg" class="card-img-top" alt="Combo Mañanero">
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <h3 class="h5 card-title fw-bold text-cozy-coffee text-uppercase mb-1">Combo Mañanero</h3>
+                                    <div class="my-3">
+                                        <span class="display-6 fw-bold text-dark">$220</span>
+                                    </div>
+                                    <p class="card-text text-secondary small mb-4">El clásico infalible para empezar el día con la energía justa.</p>
+                                    <ul class="list-unstyled text-start mb-4 flex-grow-1 small">
+                                        <li class="mb-2"><i class="bi bi-cup-hot-fill text-cozy-coffee me-2"></i> Doble carne a mitad de precio</li>
+                                        <li class="mb-2"><i class="bi bi-cup-hot-fill text-cozy-coffee me-2"></i> Muy saludables</li>
+                                        <li class="mb-2"><i class="bi bi-cup-hot-fill text-cozy-coffee me-2"></i> Vasito de jugo de naranja natural</li>
+                                    </ul>
+                                    <div class="d-grid mt-auto">
+                                        <a href="#hamburgueserias" class="btn btn-outline-cozy fw-semibold rounded-pill">Pedir en local</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Promo 2 (Destacada) -->
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden bg-cozy-cream card-cozy-highlight position-relative">
+                                <span class="position-absolute top-0 start-50 translate-middle badge badge-cozy px-3 py-2 fs-6 rounded-pill shadow-sm" style="margin-top: 15px; z-index: 2;">
+                                    Recomendado de la Casa
+                                </span>
+                                <img src="cuartuple.jpg" class="card-img-top" alt="Especialidad Astro">
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <h3 class="h5 card-title fw-bold text-cozy-coffee text-uppercase mb-1">Especialidad Astro</h3>
+                                    <div class="my-3">
+                                        <span class="display-6 fw-bold text-dark">$350</span>
+                                    </div>
+                                    <p class="card-text text-secondary small mb-4">Nuestra estrella de la casa, creada para disfrutar sin apuros.</p>
+                                    <ul class="list-unstyled text-start mb-4 flex-grow-1 small">
+                                        <li class="mb-2"><i class="bi bi-cup-hot-fill text-cozy-coffee me-2"></i> Cuádruple con papas</li>
+                                        <li class="mb-2"><i class="bi bi-cup-hot-fill text-cozy-coffee me-2"></i> Incluye aros de cebolla</li>
+                                        <li class="mb-2"><i class="bi bi-cup-hot-fill text-cozy-coffee me-2"></i> Agua mineral de cortesía</li>
+                                    </ul>
+                                    <div class="d-grid mt-auto">
+                                        <a href="#hamburgueserias" class="btn btn-cozy fw-semibold rounded-pill shadow-sm">Pedir en local</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Promo 3 -->
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden bg-cozy-cream">
+                                <img src="2_hambi.jpg" class="card-img-top" alt="Pack Dúo">
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <h3 class="h5 card-title fw-bold text-cozy-coffee text-uppercase mb-1">Pack Dúo / Break</h3>
+                                    <div class="my-3">
+                                        <span class="display-6 fw-bold text-dark">$580</span>
+                                    </div>
+                                    <p class="card-text text-secondary small mb-4">La pausa perfecta para compartir durante una reunión o charla.</p>
+                                    <ul class="list-unstyled text-start mb-4 flex-grow-1 small">
+                                        <li class="mb-2"><i class="bi bi-cup-hot-fill text-cozy-coffee me-2"></i> 2 hamburguesas</li>
+                                        <li class="mb-2"><i class="bi bi-cup-hot-fill text-cozy-coffee me-2"></i> Elección del contenido</li>
+                                        <li class="mb-2"><i class="bi bi-cup-hot-fill text-cozy-coffee me-2"></i> 2 Coca-Colas</li>
+                                    </ul>
+                                    <div class="d-grid mt-auto">
+                                        <a href="#hamburgueserias" class="btn btn-outline-cozy fw-semibold rounded-pill">Pedir en local</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- LOCALES -->
+            <section class="py-5 bg-light" id="hamburgueserias">
+                <div class="container text-center">
+                    <h2 class="fw-bold display-6 mb-3">Encontrá tu hamburguesería</h2>
+                    <p class="text-secondary mb-4">Completá esta sección con las direcciones y horarios de tus locales.</p>
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card border-0 shadow-sm rounded-4 h-100">
+                                <div class="card-body p-4">
+                                    <h3 class="h5 fw-bold">Local 1</h3>
+                                    <p class="small text-secondary mb-0">Dirección y horario a completar</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card border-0 shadow-sm rounded-4 h-100">
+                                <div class="card-body p-4">
+                                    <h3 class="h5 fw-bold">Local 2</h3>
+                                    <p class="small text-secondary mb-0">Dirección y horario a completar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FORMULARIO -->
+            <section id="registro" class="py-5 bg-light">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 bg-white p-4 p-md-5 rounded-3 shadow-sm">
+
+                            <h2 class="h3 fw-bold mb-3">Solicitá más información</h2>
+                            <p class="text-muted small mb-4">Completá el formulario y nos pondremos en contacto en menos de 24 hs.</p>
+
+                            <form action="gracias.html" method="GET">
+
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label fw-bold">Nombre completo *</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej. Ana Pérez" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo electrónico *</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="nombre@email.com" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="interes" class="form-label">¿Qué te interesa?</label>
+                                    <select class="form-select" id="interes" name="interes">
+                                        <option selected value="consulta">Consulta general</option>
+                                        <option value="eventos">Pedidos para eventos</option>
+                                        <option value="locales">Información de locales</option>
+                                        <option value="sugerencias">Sugerencias</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" value="si" id="terminos" name="terminos" required>
+                                    <label class="form-check-label small text-muted" for="terminos">
+                                        Acepto la política de privacidad y el envío de información.
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="btn btn-danger w-100 py-2 fw-bold">
+                                    Enviar solicitud
+                                </button>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/59899123456?text=Hola,%20vengo%20desde%20la%20web%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n"
+        class="btn-whatsapp-flotante" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.17-.477 1.338-.94.166-.464.166-.86.116-.94-.049-.082-.181-.133-.378-.232z" />
+        </svg>
+    </a>
+
+    <!-- JavaScript de Bootstrap: necesario para el carrusel y el menú móvil -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

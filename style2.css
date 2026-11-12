@@ -1,0 +1,134 @@
+
+:root {
+  --cozy-coffee: #6f4e37;
+  --cozy-coffee-dark: #523826;
+  --cozy-cream: #fff8ee;
+  --cozy-accent: #e8a33d;
+}
+
+
+body {
+  background-color: #ffffff;
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+section[id] {
+  scroll-margin-top: 20px;
+}
+
+.contenido {
+  margin-bottom: 1rem;
+}
+
+
+.text-cozy-coffee {
+  color: var(--cozy-coffee) !important;
+}
+
+.bg-cozy-cream {
+  background-color: var(--cozy-cream) !important;
+}
+
+
+.btn-cozy {
+  background-color: var(--cozy-coffee);
+  border-color: var(--cozy-coffee);
+  color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-cozy:hover,
+.btn-cozy:focus {
+  background-color: var(--cozy-coffee-dark);
+  border-color: var(--cozy-coffee-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-outline-cozy {
+  background-color: transparent;
+  border: 2px solid var(--cozy-coffee);
+  color: var(--cozy-coffee);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-outline-cozy:hover,
+.btn-outline-cozy:focus {
+  background-color: var(--cozy-coffee);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+
+.badge-cozy {
+  background-color: var(--cozy-accent);
+  color: #3b2a1a;
+}
+
+.card-cozy-highlight {
+  border: 2px solid var(--cozy-accent) !important;
+  box-shadow: 0 8px 24px rgba(232, 163, 61, 0.25) !important;
+}
+
+
+.card img.card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+
+.carousel-item img {
+  height: 380px;
+  object-fit: cover;
+}
+
+.custom-caption {
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  display: inline-block;
+}
+
+@media (max-width: 576px) {
+  .carousel-item img {
+    height: 240px;
+  }
+}
+
+
+.btn-whatsapp-flotante {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-whatsapp-flotante:hover {
+  background-color: #128C7E;
+  color: #FFFFFF;
+  transform: scale(1.1);
+}
