@@ -87,6 +87,22 @@
   border-color: #ff0000 !important;
 }
 
+/* ===== Azul exclusivo para el botón Enviar solicitud ===== */
+.btn-enviar-solicitud,
+.btn-enviar-solicitud:hover,
+.btn-enviar-solicitud:focus,
+.btn-enviar-solicitud:active {
+  background-color: #0d6efd !important;
+  border-color: #0d6efd !important;
+  color: #ffffff !important;
+}
+
+.btn-enviar-solicitud:hover,
+.btn-enviar-solicitud:focus {
+  background-color: #0b5ed7 !important;
+  border-color: #0a58ca !important;
+}
+
 /* ===== Estructura general ===== */
 body {
   background-color: #ffff00;
@@ -551,7 +567,7 @@ a:not(.btn):not(.btn-whatsapp-flotante) {
                                     </label>
                                 </div>
 
-                                <button type="submit" class="btn btn-danger w-100 py-2 fw-bold">
+                                <button type="submit" class="btn btn-danger btn-enviar-solicitud w-100 py-2 fw-bold">
                                     Enviar solicitud
                                 </button>
 
